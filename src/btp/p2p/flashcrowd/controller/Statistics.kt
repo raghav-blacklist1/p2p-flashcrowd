@@ -64,7 +64,6 @@ class Statistics(prefix: String) : Control {
         val allSubStreams = Network::class.activeNodes()
             .map { (it.getProtocol(flashcrowdid) as FlashcrowdProtocol).substreams }
         val connectionStatus = allSubStreams.map { isConnected(it) }
-//      val allSubStreams = (0 until Network.size()).mapNotNull { Network.get(it)?.getProtocol(pid) }.map{ isConnected((it as FlashcrowdProtocol).substreams) }
         val connStability = connectionStatus.sumBy { it.first }
         val overStability = connectionStatus.sumBy { it.second }
         System.err.println("Fraction of Connected Peers: " + (connStability.toDouble() / allSubStreams.size))
@@ -87,7 +86,7 @@ class Statistics(prefix: String) : Control {
 //      max hop count
         System.err.println("Maximum Hop Count: ${maxhopCount()}")
 
-//        stream connect time
+//      stream connect time
         System.err.println("Avg. First Stream Connect Time: ${streamConnectTime(all = false)}")
         System.err.println("Avg. All Stream Connect Time: ${streamConnectTime(all = true)}")
         System.err.println("\n--- End of Statistics ---\n")
